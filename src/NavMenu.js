@@ -1,20 +1,26 @@
-import {Button, ButtonGroup, Paper, SvgIcon, ThemeProvider} from "@mui/material";
+import {AppBar, Box, Button, Container, Grid, IconButton, ThemeProvider, Toolbar, Typography,} from "@mui/material";
+import MenuIcon from '@mui/icons-material/Menu';
 import {theme} from "./theme";
 import LocalMoviesIcon from '@mui/icons-material/LocalMovies';
 
 export function Menu(){
     return(
-        <div className={"header"}>
-            <div className={"nav-menu"}>
-                <ThemeProvider theme={theme}>
-                    <p className={"logo"}><SvgIcon component={LocalMoviesIcon}/> MovieApp</p>
-                    <p className={"github-link"}>by <a href={"https://github.com/arasdenizhan"} target={"_blank"}>Denizhan Aras</a></p>
-                    <ButtonGroup variant="contained" aria-label="outlined primary button group">
-                        <Button>MOVIES</Button>
-                        <Button>CAST</Button>
-                    </ButtonGroup>
-                </ThemeProvider>
-            </div>
-        </div>
+        <ThemeProvider theme={theme}>
+            <Box sx={{ flexGrow: 1 }}>
+                <AppBar position="static">
+                    <Toolbar a>
+                            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                                MovieApp
+                            </Typography>
+                        <Grid container justifyContent={"right"}>
+                            <Button color={"navMenu"} sx={ {':hover': {bgcolor: '#FF1818'}} }>Movies</Button>
+                            <Button color={"navMenu"} sx={ {':hover': {bgcolor: '#FF1818'}} }>Create</Button>
+                            <Button color={"navMenu"} sx={ {':hover': {bgcolor: '#FF1818'}} }>Update</Button>
+                            <Button color={"navMenu"} sx={ {':hover': {bgcolor: '#FF1818'}} }>Delete</Button>
+                        </Grid>
+                    </Toolbar>
+                </AppBar>
+            </Box>
+        </ThemeProvider>
     );
 }

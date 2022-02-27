@@ -13,6 +13,9 @@ export const theme = createTheme({
             darker: '#ff5200',
             contrastText: '#ffffff'
         },
+        navMenu : {
+            main: '#ffffff'
+        },
         neutral: {
             main: '#ffbda6',
             contrastText: '#ffffff',

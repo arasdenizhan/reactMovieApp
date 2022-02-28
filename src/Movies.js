@@ -5,7 +5,7 @@ import axios from "axios";
 function prepareMovieCard(props){
     return (
         <Grid item>
-            <Card sx={{ maxWidth: 300 }}>
+            <Card sx={{ maxWidth: 300, borderRadius: 5}}>
                 <CardMedia
                     component="img"
                     height="140"

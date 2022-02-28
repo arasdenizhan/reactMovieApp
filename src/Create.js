@@ -1,4 +1,4 @@
-import {Box, Button, Grid, TextField} from "@mui/material";
+import {Alert, Box, Button, Grid, TextField} from "@mui/material";
 import ImageIcon from '@mui/icons-material/Image';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import React from "react";
@@ -27,10 +27,22 @@ export class Create extends React.Component{
         this.setState(prevState)
     }
 
-    onChangePictureField(value){
-        /* :TO-DO:
-        * read file encode it to base64 and update the state.
-        * */
+    async onChangePictureField(value){
+        return new Promise(resolve => {
+            let baseURL = "";
+            let reader = new FileReader();
+            reader.readAsDataURL(value);
+            reader.onload = function () {
+                baseURL = reader.result;
+                resolve(baseURL)
+            };
+        }).then(result => {
+            let prevState = Object.assign({}, this.state)
+            prevState.picture = result
+            this.setState(prevState)
+        }).finally(
+            alert("Image Upload Completed.")
+        )
     }
 
     async createRequest () {
@@ -44,9 +56,12 @@ export class Create extends React.Component{
                 headers: {
                     'Content-Type': 'application/json'
                 }
-            }
-            ).then(function (response) {
-                    return response;
+            }).then(function (response) {
+                    if(response.status===200){
+                        alert("Movie created!")
+                    } else {
+                        alert("Movie creation failed!")
+                    }
                 })
         );
     }
@@ -68,7 +83,7 @@ export class Create extends React.Component{
                         </Button>
                     </Grid>
                     <Grid item paddingTop={4} textAlign={"center"}>
-                        <Button onClick={ () => {this.createRequest().then(r => console.log(r));} } variant="contained" component="label" startIcon={<AddCircleIcon/>}>
+                        <Button onClick={ () => {this.createRequest()} } variant="contained" component="label" startIcon={<AddCircleIcon/>}>
                             Create New Movie
                         </Button>
                     </Grid>

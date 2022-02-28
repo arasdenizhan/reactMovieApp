@@ -8,11 +8,11 @@ export function Menu(){
         <ThemeProvider theme={theme}>
             <Box sx={{ flexGrow: 1 }}>
                 <AppBar position="static">
-                    <Toolbar a>
+                    <Toolbar>
+                        <Grid container justifyContent={"right"}>
                             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                                 MovieApp
                             </Typography>
-                        <Grid container justifyContent={"right"}>
                             <Button color={"navMenu"} sx={ {':hover': {bgcolor: '#FF1818'}} }>Movies</Button>
                             <Button color={"navMenu"} sx={ {':hover': {bgcolor: '#FF1818'}} }>Create</Button>
                             <Button color={"navMenu"} sx={ {':hover': {bgcolor: '#FF1818'}} }>Update</Button>

@@ -4,8 +4,8 @@ import axios from "axios";
 
 function prepareMovieCard(props){
     return (
-        <Grid item xs={3}>
-            <Card sx={{ maxWidth: 300 , minWidth: 150}}>
+        <Grid item>
+            <Card sx={{ maxWidth: 300 }}>
                 <CardMedia
                     component="img"
                     height="140"
@@ -62,8 +62,9 @@ export default class Movies extends React.Component {
             <Grid
                 container
                 direction="row"
-                justifyContent="center"
-                alignItems="top"
+                alignItems="flex-start"
+                justifyContent={"center"}
+                display={"flex"}
                 spacing={2}
                 padding={5}
             >

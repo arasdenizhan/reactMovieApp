@@ -40,9 +40,10 @@ export class Delete extends React.Component{
                 .then(function (response) {
                     if(response.status===200){
                         alert("Movie deleted!")
-                    } else {
-                        alert("Movie delete failed!")
                     }
+                })
+                .catch(function(error) {
+                    alert("Movie delete failed!")
                 })
         );
     }

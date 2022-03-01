@@ -59,9 +59,10 @@ export class Create extends React.Component{
             }).then(function (response) {
                     if(response.status===200){
                         alert("Movie created!")
-                    } else {
-                        alert("Movie creation failed!")
                     }
+                })
+                .catch(function(error) {
+                    alert("Movie creation failed!")
                 })
         );
     }

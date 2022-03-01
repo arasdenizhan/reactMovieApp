@@ -57,12 +57,14 @@ export class Update extends React.Component{
                 headers: {
                     'Content-Type': 'application/json'
                 }
-            }).then(function (response) {
+            })
+            .then(function (response) {
                 if(response.status===200){
                     alert("Movie updated!")
-                } else {
-                    alert("Movie update failed!")
                 }
+            })
+            .catch(function(error) {
+                alert("Movie update failed!")
             })
         );
     }

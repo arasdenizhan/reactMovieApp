@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import {
     Box,
-    Button, Checkbox, Divider,
+    Button, Divider,
     Grid, List, ListItem, ListItemText,
     TextField
 } from "@mui/material";
@@ -13,6 +13,7 @@ export class Update extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
+            movieId: null,
             newName: null,
             newDescription: null,
             movies: []
@@ -33,6 +34,12 @@ export class Update extends React.Component{
         this.setState(prevState)
     }
 
+    onChangeIdField(value){
+        let prevState = Object.assign({}, this.state)
+        prevState.movieId = value;
+        this.setState(prevState)
+    }
+
     onChangeDescriptionField(value){
         let prevState = Object.assign({}, this.state)
         prevState.newDescription = value;
@@ -41,7 +48,7 @@ export class Update extends React.Component{
 
     async createRequest () {
         const movieDto = JSON.stringify({
-            movieName: this.state.name, /* TODO: handle this in according to the checkboxes. */
+            movieId: this.state.movieId,
             newName: this.state.newName,
             newDescription: this.state.newDescription
         });
@@ -52,9 +59,9 @@ export class Update extends React.Component{
                 }
             }).then(function (response) {
                 if(response.status===200){
-                    alert("Movie created!")
+                    alert("Movie updated!")
                 } else {
-                    alert("Movie creation failed!")
+                    alert("Movie update failed!")
                 }
             })
         );
@@ -67,6 +74,9 @@ export class Update extends React.Component{
                     <List component="nav" aria-label="moviesList" sx={{paddingBottom: 3}}>
                         {this.prepareMovieList(this.state.movies)}
                     </List>
+                    <Grid item paddingBottom={2}>
+                        <TextField id="movie-id" label="Movie Id" variant="filled" type={"number"} InputProps={{ inputProps: { min: 0 } }} onChange={ event => {this.onChangeIdField(event.target.value)} } />
+                    </Grid>
                     <Grid item paddingBottom={2}>
                         <TextField id="movie-name" label="New Name" variant="filled" onChange={ event => {this.onChangeNameField(event.target.value)} } />
                     </Grid>
@@ -87,7 +97,7 @@ export class Update extends React.Component{
         movies.forEach(item => {
                 {
                     movieListItems.push(
-                        prepareMovieListItem({movieName: item.movieName})
+                        prepareMovieListItem({movieName: item.movieName, movieId: item.id})
                     )
                 }
         })
@@ -102,7 +112,7 @@ function prepareMovieListItem(props){
         <div>
             <Divider/>
             <ListItem>
-                <Checkbox /> <ListItemText primary={props.movieName}/>
+                <ListItemText primary={ props.movieId + " | " + props.movieName  }/>
             </ListItem>
             <Divider/>
         </div>
